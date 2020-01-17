@@ -100,9 +100,15 @@ DATABASES = {
 }
 
 import dj_database_url
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'] = dj_database_url.config(default='postgres://...')
+# DATABASES['default'] = dj_database_url.parse('postgres://...', conn_max_age=600)
+
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-DATABASES['default'] = dj_database_url.config(default='postgres://...')
-DATABASES['default'] = dj_database_url.parse('postgres://...', conn_max_age=600)
+DATABASES['default'] = dj_database_url.config(default='postgres://ukukczvomahpxz:652c50bbd30858cb25d3a8868203795d61df7b5e7efa1c7e942a710661087be4@ec2-34-197-171-33.compute-1.amazonaws.com:5432/d5uehiionrqbmj')
+DATABASES['default'] = dj_database_url.parse('postgres://ukukczvomahpxz:652c50bbd30858cb25d3a8868203795d61df7b5e7efa1c7e942a710661087be4@ec2-34-197-171-33.compute-1.amazonaws.com:5432/d5uehiionrqbmj', conn_max_age=600)
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
