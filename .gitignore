@@ -2,8 +2,8 @@
 # Byte-compiled / optimized / DLL files
 # Django stuff:
 tmp
-
-
+.env
+.venv
 
 
 # Created by https://www.gitignore.io/api/django
