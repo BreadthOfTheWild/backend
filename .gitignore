@@ -1,8 +1,8 @@
 .DS_Store
+.env
 # Byte-compiled / optimized / DLL files
 # Django stuff:
 tmp
-.env
 .venv
 
 
