@@ -14,6 +14,7 @@ import json
 @csrf_exempt
 @api_view(["GET"])
 def initialize(request):
+    print ("Init called...")
     user = request.user
     player = user.player
     player_id = player.id
@@ -26,6 +27,7 @@ def initialize(request):
 # @csrf_exempt
 @api_view(["POST"])
 def move(request):
+    print ("Move called...")
     dirs={"n": "north", "s": "south", "e": "east", "w": "west"}
     reverse_dirs = {"n": "south", "s": "north", "e": "west", "w": "east"}
     player = request.user.player
@@ -62,6 +64,7 @@ def move(request):
 @csrf_exempt
 @api_view(["GET"])
 def getRooms(request):
+    print ("Get rooms called...")
     #Get all rooms from DB
 
     #And return in response
