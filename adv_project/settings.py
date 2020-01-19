@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 from decouple import config
-
 import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DATABASES = {
@@ -40,10 +40,12 @@ DATABASES = {
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['.herokuapp.com', '.localhost']
 
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = ['.herokuapp.com', '.localhost']
 
 # Application definition
 
@@ -68,7 +70,7 @@ INSTALLED_APPS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
-
+# MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -103,7 +105,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'adv_project.wsgi.application'
 
 
-# Database
+# Database --
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
@@ -112,6 +114,14 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+import dj_database_url
+# DATABASES
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+DATABASES['default'] = dj_database_url.config(default='postgres://ukukczvomahpxz:652c50bbd30858cb25d3a8868203795d61df7b5e7efa1c7e942a710661087be4@ec2-34-197-171-33.compute-1.amazonaws.com:5432/d5uehiionrqbmj')
+DATABASES['default'] = dj_database_url.parse('postgres://ukukczvomahpxz:652c50bbd30858cb25d3a8868203795d61df7b5e7efa1c7e942a710661087be4@ec2-34-197-171-33.compute-1.amazonaws.com:5432/d5uehiionrqbmj', conn_max_age=600)
+
 
 
 # Password validation
@@ -164,8 +174,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# STATIC_URL = '/static/'
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 import django_heroku
 django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
