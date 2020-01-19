@@ -4,7 +4,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from decouple import config
 from django.contrib.auth.models import User
-# from .models import *
 from rest_framework.decorators import api_view
 import json
 from .models import *
@@ -20,6 +19,19 @@ def initialize(request):
     player = user.player
     player_id = player.id
     uuid = player.uuid
+    room = player.room()
+    players = room.playerNames(player_id)
+    return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
+
+@csrf_exempt
+@api_view(["GET"])
+def reset(request):
+    user = request.user
+    player = user.player
+    player_id = player.id
+    uuid = player.uuid
+    # this resets the player
+    player.reset()
     room = player.room()
     players = room.playerNames(player_id)
     return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
@@ -59,7 +71,13 @@ def move(request):
         return JsonResponse({'name':player.user.username, 'title':nextRoom.title, 'description':nextRoom.description, 'players':players, 'error_msg':""}, safe=True)
     else:
         players = room.playerNames(player_id)
-        return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
+        return JsonResponse(
+            {'name':player.user.username, 
+            'title':room.title, 
+            'description':room.description,
+            'players':players, 
+            'error_msg':"You cannot move that way."}, 
+         safe=True)
 
 
 @csrf_exempt
