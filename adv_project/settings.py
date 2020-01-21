@@ -45,7 +45,8 @@ DEBUG = config('DEBUG', cast=bool)
 
 
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
-ALLOWED_HOSTS = ['.herokuapp.com', '.localhost', config('ALLOWED_HOSTS').split(',')]
+# ALLOWED_HOSTS = ['.herokuapp.com', '.localhost', config('ALLOWED_HOSTS').split(',')]
+ALLOWED_HOSTS = ['.herokuapp.com', '.localhost']
 
 # Application definition
 
