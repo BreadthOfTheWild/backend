@@ -49,6 +49,7 @@ class Player(models.Model):
         try:
             return Room.objects.get(id=self.currentRoom)
         except Room.DoesNotExist:
+            print('could not reach')
             self.initialize()
             return self.room()
 

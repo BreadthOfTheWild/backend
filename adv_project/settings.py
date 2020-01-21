@@ -45,7 +45,7 @@ DEBUG = config('DEBUG', cast=bool)
 
 
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
-ALLOWED_HOSTS = ['.herokuapp.com', '.localhost']
+ALLOWED_HOSTS = ['.herokuapp.com', '.localhost', config('ALLOWED_HOSTS').split(',')]
 
 # Application definition
 
@@ -146,7 +146,8 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    #     #'rest_framework.permissions.AllowAny', -- found via stackoverflow
+    #     #  'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     # ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',

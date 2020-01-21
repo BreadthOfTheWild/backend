@@ -15,7 +15,7 @@ from .models import *
 @csrf_exempt
 @api_view(["GET"])
 def initialize(request):
-    print ("Init called...", request)
+    print ("Init called...", request)     
     user = request.user
     player = user.player
     player_id = player.id
@@ -38,7 +38,7 @@ def reset(request):
     return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
 
 
-#@csrf_exempt
+@csrf_exempt
 @api_view(["POST"])
 def move(request):
     print ("Move called...")
