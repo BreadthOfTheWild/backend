@@ -1,8 +1,7 @@
 {
     "_meta": {
         "hash": {
-         ##   "sha256": "03ff5653347f93c0d0ea49ad22733957f82ece057d06920d523bd4fedb05b707"
-            "sha256": "17eec468e6a7c37ebaa90ee50ec1526436a31077100081d693f9e6ca24a8c031"
+            "sha256": "03ff5653347f93c0d0ea49ad22733957f82ece057d06920d523bd4fedb05b707"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -114,7 +113,6 @@
                 "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163",
                 "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"
             ],
-# resolved via github
             "index": "pypi",
             "version": "==0.5.0"
         },
@@ -220,7 +218,6 @@
             ],
             "version": "==2.8.4"
         },
-        ## from Jamar-Torres branch
         "psycopg2-binary": {
             "hashes": [
                 "sha256:040234f8a4a8dfd692662a8308d78f63f31a97e1c42d2480e5e6810c48966a29",
@@ -275,9 +272,7 @@
             "version": "==0.4.8"
         },
         "pycparser": {
-            "hashes": [ 
-            ## First line ending in f35de from Jamar-Torres branch
-                "sha256:d1da0c7508fdcd4295ceda96838d8e8c2aa87240987e6967b0c87e1a181f35de",
+            "hashes": [
                 "sha256:a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3"
             ],
             "version": "==2.19"
