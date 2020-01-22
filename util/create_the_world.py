@@ -1,7 +1,13 @@
-from django.contrib.auth.models import User
-from adventure.models import Player, Room
-
+#from django.contrib.auth.models import User
+#from adventure.models import Player, Room
 import random
+
+# import time
+
+# start_time = time.time()
+### consider to add a way to delete all objects
+# Room.objects.all().delete()
+from room_descriptions import room_name, room_description
 
 # Sample Python code that can be used to generate rooms in
 # a zig-zag pattern.
@@ -10,6 +16,51 @@ import random
 # procedural generation algorithm and use print_rooms()
 # to see the world.
 
+# # append to a list
+# room_generator = []
+# # room_val = []
+# # room_generator = {}
+# # for data in room_name, room_description:
+# #     info = data
+# #     print (f'info: {info}')
+# #     name = info[0]
+# #     desc = info[1]
+# #     print (f'info: {name, desc}')
+# #     room_generator[data] = (name, description)
+
+
+# # def getRoomInfo(room_descriptions):
+# #     for value in room_decriptions.items():
+# #         room_generator.append(value)
+# #         print(f'room generator: {room_generator}')
+# #         # print(k, v)
+# #         # print(room_generator)
+# # print(getRoomInfo)
+    
+# for r in room_name:
+#     room_generator.append(room_name)
+#     # print(r)
+
+# for d in room_description:
+#     room_generator.append(room_description)
+#     # print(d)
+
+# # room_generator['val_1'] = room_name
+# # desc = [room_description]
+
+# # room_generator['val_1', 'val_2'].append(desc)
+
+# print(room_generator)
+
+
+# for desc in room_generator:
+#     print(desc.room_name, desc.room_description)
+
+# end_time = time.time()
+# print (f"{room_generator[room_name, room_description]} room generator:\n\n{', '.join(room_generator)}\n\n")
+# print (f"runtime: {end_time - start_time} seconds")
+
+### import either csv file or have rooms object data listed 
 
 class Room:
     def __init__(self, id, name, description, x, y):
@@ -85,7 +136,11 @@ class World:
                 direction *= -1
 
             # Create a room in the given direction
-            room = Room(room_count, "A Generic Room", "This is a generic room.", x, y)
+            #
+           ## room = Room(room_count, "A Generic Room", "This is a generic room.", x, y)
+                #connect room_name and room_description (pass in room count in the room name, maybe also for room_description)
+            room = Room(room_count, room_name[room_count], room_description[room_count],  x, y)
+           
             # Note that in Django, you'll need to save the room after you create it
 
             # Save the room in the World grid
@@ -98,6 +153,8 @@ class World:
             # Update iteration variables
             previous_room = room
             room_count += 1
+            print(f'room: {room}')
+            # print(f'room desc: {room_name}')
 
 
 
@@ -157,11 +214,13 @@ class World:
 
 
 w = World()
-num_rooms = 44
-width = 8
-height = 7
+num_rooms = 100
+width = 10
+height = 10
 w.generate_rooms(width, height, num_rooms)
 w.print_rooms()
+
+
 
 
 print(f"\n\nWorld\n  height: {height}\n  width: {width},\n  num_rooms: {num_rooms}\n")
