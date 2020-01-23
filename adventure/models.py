@@ -14,10 +14,7 @@ class Room(models.Model):
     s_to = models.IntegerField(default=0)
     e_to = models.IntegerField(default=0)
     w_to = models.IntegerField(default=0)
-    # def __repr__(self):
-    #     if self.e_to is not None:
-    #         return f"({self.x}, {self.y}) -> ({self.e_to.x}, {self.e_to.y})"
-    #     return f"({self.x}, {self.y})"
+
     def connectRooms(self, destinationRoom, direction):
 
         reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
@@ -25,26 +22,10 @@ class Room(models.Model):
         setattr(self, f"{direction}_to", destinationRoom.id)
         setattr(destinationRoom, f"{reverse_dir}_to", self.id)
         self.save()
-        # destinationRoomID = destinationRoom.id
-        # try:
-        #     destinationRoom = Room.objects.get(id=destinationRoomID)
-        # except Room.DoesNotExist:
-        #     print("That room does not exist")
-        # else:
-        #     if direction == "n":
-        #         self.n_to = destinationRoomID
-        #     elif direction == "s":
-        #         self.s_to = destinationRoomID
-        #     elif direction == "e":
-        #         self.e_to = destinationRoomID
-        #     elif direction == "w":
-        #         self.w_to = destinationRoomID
-        #     else:
-        #         print("Invalid direction")
-        #         return
-            # self.save()
+
     def playerNames(self, currentPlayerID):
         return [p.user.username for p in Player.objects.filter(currentRoom=self.id) if p.id != int(currentPlayerID)]
+        
     def playerUUIDs(self, currentPlayerID):
         return [p.uuid for p in Player.objects.filter(currentRoom=self.id) if p.id != int(currentPlayerID)]
 
