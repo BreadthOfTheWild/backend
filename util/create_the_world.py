@@ -71,7 +71,7 @@ class World:
             #room = Room(room_count, room_name[room_count], room_description[room_count],  x, y)
             room = Room(room_count, room_name[room_count], room_description[room_count],  x, y)
             # Note that in Django, you'll need to save the room after you create it
-            # room.save()
+            room.save()
             # Save the room in the World grid
             self.grid[y][x] = room
             # Connect the new room to the previous room
