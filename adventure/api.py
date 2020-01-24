@@ -186,6 +186,7 @@ def say(request):
     # player_id = player.id
     # player_uuid = player.uuid
     data = json.loads(request.body)
-    pusher.trigger(f'djungle-app-channel', u'my-event', {u'message': f'{player.user.username}'})
-    return JsonResponse({'message':f'Checking that message: *** {message} *** was sent'}, safe=True )
+    chat = data['chat']
+    pusher.trigger(f'djungle-app-channel', u'my-event', {u'chat': f'{chat}' f'{player.user.username}'})
+    return JsonResponse({'message':f'Checking that chat message: *** {chat} *** was sent'}, safe=True )
     # maybe add relevant status?
