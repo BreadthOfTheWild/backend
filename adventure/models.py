@@ -21,6 +21,7 @@ class Room(models.Model):
     def connectRooms(self, destinationRoom, direction):
 
         reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
+  
         reverse_dir = reverse_dirs[direction]
         setattr(self, f"{direction}_to", destinationRoom.id)
         setattr(destinationRoom, f"{reverse_dir}_to", self.id)

@@ -21,38 +21,6 @@ from util.room_descriptions import room_name, room_description
 
 ### import either csv file or have rooms object data listed 
 
-## to be commented
-# class Room:
-#     def __init__(self, id, name, description, x, y):
-#         self.id = id
-#         self.name = name
-#         self.description = description
-#         # directions must be set to integer . cannot be NONE
-#         self.n_to = None
-#         self.s_to = None
-#         self.e_to = None
-#         self.w_to = None
-#         self.x = x
-#         self.y = y
-#     def __repr__(self):
-#         if self.e_to is not None:
-#             return f"({self.x}, {self.y}) -> ({self.e_to.x}, {self.e_to.y})"
-#         return f"({self.x}, {self.y})"
-#     def connect_rooms(self, connecting_room, direction):
-#         '''
-#         Connect two rooms in the given n/s/e/w direction
-#         '''
-#         reverse_dirs = {"n": "s", "s": "n", "e": "w", "w": "e"}
-#         reverse_dir = reverse_dirs[direction]
-#         setattr(self, f"{direction}_to", connecting_room)
-#         setattr(connecting_room, f"{reverse_dir}_to", self)
-#     def get_room_in_direction(self, direction):
-#         '''
-#         Connect two rooms in the given n/s/e/w direction
-#         '''
-#         return getattr(self, f"{direction}_to")
-
-
 class World:
     def __init__(self):
         self.grid = None
@@ -106,11 +74,10 @@ class World:
             # room.save()
             # Save the room in the World grid
             self.grid[y][x] = room
-
             # Connect the new room to the previous room
             if previous_room is not None:
                 previous_room.connectRooms(room, room_direction)
-
+                
             # Update iteration variables
             previous_room = room
             room_count += 1
@@ -174,12 +141,12 @@ class World:
         print(str)
 
 
-# w = World()
-# num_rooms = 100
-# width = 10
-# height = 10
-# w.generate_rooms(width, height, num_rooms)
-# w.print_rooms()
+w = World()
+num_rooms = 100
+width = 10
+height = 10
+w.generate_rooms(width, height, num_rooms)
+w.print_rooms()
 
 
 
