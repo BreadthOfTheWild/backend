@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-# from pusher import Pusher
+from pusher import Pusher
 from django.http import JsonResponse
 from decouple import config
 from django.contrib.auth.models import User
@@ -10,7 +10,12 @@ from .models import *
 
 
 # instantiate pusher
-# pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
+pusher = Pusher(
+    app_id=config('PUSHER_APP_ID'), 
+    key=config('PUSHER_KEY'), 
+    secret=config('PUSHER_SECRET'), 
+    cluster=config('PUSHER_CLUSTER')
+    )
 
 @csrf_exempt
 @api_view(["GET"])
@@ -177,4 +182,10 @@ def getRooms(request):
 @api_view(["POST"])
 def say(request):
     # IMPLEMENT
-    return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+    player = request.user.player
+    # player_id = player.id
+    # player_uuid = player.uuid
+    data = json.loads(request.body)
+    pusher.trigger(f'djungle-app-channel', u'my-event', {u'message': f'{player.user.username}'})
+    return JsonResponse({'message':f'Checking that message: *** {message} *** was sent'}, safe=True )
+    # maybe add relevant status?
