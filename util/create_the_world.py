@@ -1,11 +1,10 @@
 
 
 # from django.contrib.auth.models import User
-
 ### import the Room class within the shell (once ready)
 # from adventure.models import Player, Room
-from adventure.models import Room
-# #import random
+from adventure.models import Player, Room
+# import random
 from util.room_descriptions import room_name, room_description
 # from util.create_the_world import World
 
@@ -19,7 +18,7 @@ class World:
         '''
         Fill up the grid, bottom to top, in a zig-zag pattern
         '''
-
+        
         # Initialize the grid
         self.grid = [None] * size_y
         self.width = size_x
@@ -57,12 +56,12 @@ class World:
             #
             room = Room(room_count, room_name[room_count], room_description[room_count],  x, y)
             self.grid[y][x] = room
-            room.save()
+            # room.save()
 
             # Connect the new room to the previous room
             if previous_room is not None:
                 previous_room.connectRooms(room, room_direction)
-
+                
             # Update iteration variables
             previous_room = room
             room_count += 1
@@ -126,12 +125,15 @@ class World:
         print(str)
 
 
-# w = World()
-# num_rooms = 100
-# width = 10
-# height = 10
-# w.generate_rooms(width, height, num_rooms)
-# w.print_rooms()
+
+w = World()
+num_rooms = 100
+width = 10
+height = 10
+w.generate_rooms(width, height, num_rooms)
+w.print_rooms()
+
+
 
 
 
